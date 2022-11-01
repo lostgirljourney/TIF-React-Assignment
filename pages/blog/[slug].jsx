@@ -1,5 +1,8 @@
+import { useRef } from 'react';
 import { useRouter } from 'next/router';
+import LoadingBar from 'react-top-loading-bar';
 import { Image, Text, Box, Button, Flex } from '@chakra-ui/react';
+
 import Layout from '../layout';
 import { getAllBlogs, getBlog } from '../../services';
 
@@ -26,8 +29,11 @@ export async function getStaticPaths() {
 
 const Blog = ({ blog }) => {
   const router = useRouter();
+  const ref = useRef(null);
+
   return (
     <Layout mode="dark">
+      <LoadingBar color="#E23744" ref={ref} />
       <Flex
         width="100%"
         padding="3px 12px"
@@ -43,6 +49,7 @@ const Blog = ({ blog }) => {
           width={{ xsm: '43px', sm: '107px' }}
           onClick={() => {
             router.push('/');
+            ref.current.continuousStart();
           }}
           fallbackSrc="https://via.placeholder.com/150"
         />
@@ -69,7 +76,7 @@ const Blog = ({ blog }) => {
         height="max-content"
         flexDirection="column"
         justifyContent="center"
-        padding={{ xsm: '29px 0px', sm: '62px 0 97px' }}
+        padding={{ xsm: '29px 10px', sm: '97px 20px 62px' }}
       >
         <Text
           fontWeight="700"
@@ -83,10 +90,10 @@ const Blog = ({ blog }) => {
         <Text
           fontWeight="400"
           align={{ xsm: 'center' }}
-          marginBottom={{ xsm: '17px' }}
           w={{ xsm: '236px', sm: '95%' }}
           fontSize={{ xsm: '10px', sm: '16px' }}
           lineHeight={{ xsm: '14px', sm: '27px' }}
+          marginBottom={{ xsm: '17px', sm: '53px' }}
           style={{ fontFamily: `'Open Sans', sans-serif` }}
         >
           {blog.subtitle}

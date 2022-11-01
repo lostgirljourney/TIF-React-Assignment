@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import LoadingBar from 'react-top-loading-bar';
+import { useEffect, useRef, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { Box, Button, Image, Flex, Text } from '@chakra-ui/react';
+
 import Layout from './layout';
 import Card from './components/Card';
 import { getBlogs } from '../services';
@@ -8,6 +10,7 @@ import { getBlogs } from '../services';
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
   const [pageCount, setPageCount] = useState(1);
+  const ref = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +22,7 @@ const Home = () => {
 
   return (
     <Layout mode="light">
+      <LoadingBar color="#E23744" ref={ref} />
       <main>
         <Image
           top="33px"
@@ -227,7 +231,11 @@ const Home = () => {
             }}
           >
             {blogs.map((blog) => (
-              <Card key={blog.id} {...blog} />
+              <Card
+                key={blog.id}
+                {...blog}
+                continuousStart={ref.current.continuousStart}
+              />
             ))}
           </Flex>
           <Flex
@@ -243,7 +251,11 @@ const Home = () => {
             }}
           >
             {blogs.map((blog) => (
-              <Card key={blog.id} {...blog} />
+              <Card
+                key={blog.id}
+                {...blog}
+                continuousStart={ref.current.continuousStart}
+              />
             ))}
           </Flex>
           <Flex alignItems="center" justifyContent="center">

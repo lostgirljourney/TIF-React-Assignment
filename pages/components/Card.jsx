@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { Flex, Button, Text, Img } from '@chakra-ui/react';
 
-const Card = ({ title, slug, excerpt, featured_image }) => {
+const Card = ({ title, slug, excerpt, featured_image, continuousStart }) => {
   const router = useRouter();
   return (
     <Flex
@@ -72,6 +72,7 @@ const Card = ({ title, slug, excerpt, featured_image }) => {
         style={{ fontFamily: `'Open Sans', sans-serif` }}
         onClick={() => {
           router.push(`/blog/${slug}`);
+          continuousStart();
         }}
       >
         Read More
