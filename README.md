@@ -2,7 +2,7 @@
 
 > by Falguni Sarkar
 
-This repository is for the submission of thea assignment given by TIF for React Intern.
+This repository is for the submission of the assignment given by TIF for React Intern.
 
 Screenshots of Desktop and Mobile Views:
 
