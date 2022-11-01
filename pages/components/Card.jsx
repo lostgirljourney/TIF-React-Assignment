@@ -55,7 +55,7 @@ const Card = ({ title, slug, excerpt, featured_image }) => {
         lineHeight={{ xsm: '22px', lgBy2: '27px' }}
         style={{ fontFamily: `'Source Sans Pro', sans-serif` }}
       >
-        {excerpt.length > 170 ? `${excerpt.substring(0, 170)}...` : excerpt}
+        {excerpt?.length > 170 ? `${excerpt.substring(0, 170)}...` : excerpt}
       </Text>
       <Button
         color="#424961"
